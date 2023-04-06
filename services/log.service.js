@@ -12,10 +12,21 @@ const printSuccess = (message) => {
 const printHelp = () => {
 	console.log(
 		dedent`${chalk.bgCyan(' HELP ')}
-			Без параметром - вывод погоды
-			-s [CITY] для установки
-			-h для вывода помощи
-			-t [API_KEY] для сохранения токена
+			No parameters - weather output
+			-s [CITY] set city
+			-h display help
+			-t [API_KEY] set api key
+		`	
+	);
+};
+
+const printWeather = (res, icon) => {
+	console.log(
+		dedent`${chalk.bgYellow(' WEATHER ')} Weather in city ${res.name}
+			${icon} ${res.weather[0].description}
+			Temperature: ${res.main.temp} (feels like ${res.main.feels_like})
+			Humidity: ${res.main.humidity}%
+			Wind speed: ${res.wind.speed}
 		`	
 	);
 };
@@ -23,5 +34,6 @@ const printHelp = () => {
 export {
 	printError,
 	printSuccess,
-	printHelp
+	printHelp,
+	printWeather
 };
