@@ -1,5 +1,4 @@
 import axios from 'axios';
-// import https from 'https';
 import { getKeyValue, TOKEN_DICTIONARY } from './storage.service.js';
 
 const API_URL = 'https://api.openweathermap.org/data/2.5/weather'
@@ -19,9 +18,7 @@ const getWeather = async (city) => {
 			units: 'metric'
 		}
 	});
-	
-	console.log(data);
-	
+		
 	return data;
 };
 

@@ -18,9 +18,25 @@ const saveToken = async (token) => {
 	}
 }
 
+const getForecast = async () => {
+	try {
+		const weather = await getWeather('almaty');
+	}
+	catch(e) {
+		if(e?.response?.status === 404) {
+			printError('Not valid city!');
+		}
+		else if(e?.response?.status === 401) {
+			printError('Not valid token!');
+		}
+		else {
+			printError(e.message);
+		}
+	}
+};
+
 const initCLI = () => {
 	const args = getArgs(process.argv);
-	console.log(process.env);
 	
 	if(args.h) {
 		printHelp()
@@ -31,7 +47,8 @@ const initCLI = () => {
 	if(args.t) {
 		return saveToken(args.t);
 	}
-	getWeather('almaty');
+	
+	getForecast();
 };
 
 initCLI();
